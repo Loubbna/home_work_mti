@@ -7,8 +7,12 @@ class Budget:
         self.spent_amount = spent_amount
         self.expenses = []
     
+    
+    def get_remaining_budget(self):
+        """Returns the remaining budget"""
+        return self.total_amount - self.spent_amount
+class add_expense(Budget):
     def add_expense(self, description, category, amount):
-        """Adds an expense to the budget"""
         expense = Expense(
             expense_id=len(self.expenses) + 1,
             description=description,
@@ -16,8 +20,5 @@ class Budget:
             category=category
         )
         self.expenses.append(expense)
+        self.spent_amount += amount
         return expense
-    
-    def get_remaining_budget(self):
-        """Returns the remaining budget"""
-        return self.total_amount - self.spent_amount
