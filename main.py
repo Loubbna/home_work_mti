@@ -1,10 +1,13 @@
-from user import user 
+from user import User 
 from Executive import Executive
 from member import Member
 from event import Event
 from budget import Budget
 from EventRegistration import EventRegistration
 from expense import Expense
+from datetime import datetime
+from storage import JSONStorage
+from ui import WebUi
 
 
 
@@ -63,3 +66,11 @@ if __name__ == "__main__":
     print(f"Registrations: {len(event.registrations)}")
     print(f"Budget remaining: ${budget.get_remaining_budget()}")
     print(f"Expense approved: {expense.approved}")
+storage = JSONStorage()   
+ui = WebUi()           
+
+    # Inject them into Event
+event = Event("Tech Conference", "Tech Center", storage, ui)
+event.schedule(datetime(2025, 12, 10, 9, 0), "Main Hall")
+event.register_member("line")
+event.save_event()

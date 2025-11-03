@@ -28,10 +28,3 @@ class Executive(User):
         self.created_events.append(event)
         return event
     
-    def approve_expense(self, expense):
-        """Approves an expense if within approval limit"""
-        if expense.amount <= self.max_approval_amount:
-            expense.approved = True
-            expense.approved_by(self)
-            return True
-        return False
